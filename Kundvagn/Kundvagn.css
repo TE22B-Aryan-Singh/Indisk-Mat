@@ -63,3 +63,35 @@ header > p{
     margin-bottom: auto;
     font-size: xx-large;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h2{
+    background-color:#D9D9D9;
+    color: #050000;
+    padding: 20px;
+    text-align: center;
+    font-size: xx-large;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.cart-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.total-price {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-left: 8rem;
+}
