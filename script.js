@@ -1,23 +1,86 @@
-document.addEventListener('DOMContentLoaded', function() {
-
+document.addEventListener('DOMContentLoaded', function () {
     const cartItemsContainer = document.getElementById('cart-items');
     const totalPriceElement = document.getElementById('total-price');
+    const totalQuantityElement = document.querySelector('.totalQuantity');
 
+    let shoppingCart = [];
 
-    try {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const products = [
+        { id: 1, name: 'Indisk Dhaal', price: 150 },
+        { id: 2, name: 'Tikka Masala', price: 150 },
+    
+    ];
 
+    function addToCart(productId) {
+        let product = {
+            id: productId,
+            name: getProductName(productId),
+            price: getProductPrice(productId)
+        };
 
-        cart.forEach(item => {
-            const cartItemDiv = document.createElement('div');
-            cartItemDiv.classList.add('cart-item');
-            cartItemDiv.textContent = `Produkt ${item.productId}`;
-            cartItemsContainer.appendChild(cartItemDiv);
+        shoppingCart.push(product);
+        localStorage.setItem('cart', JSON.stringify(shoppingCart));
+        updateCartUI();
+    }
+
+    function removeFromCart(productId) {
+        const index = shoppingCart.findIndex(product => product.id === productId);
+        if (index !== -1) {
+            shoppingCart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(shoppingCart));
+            updateCartUI();
+        }
+    }
+
+    function getProductName(productId) {
+        const product = products.find(product => product.id == productId);
+        return product ? product.name : '';
+    }
+
+    function getProductPrice(productId) {
+        const product = products.find(product => product.id == productId);
+        return product ? product.price : 150;
+    }
+
+    function updateCartUI() {
+        cartItemsContainer.innerHTML = '';
+
+        shoppingCart.forEach(product => {
+            let itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+
+            itemElement.textContent = `${product.name} - ${product.price}Kr`;
+
+            let removeButton = document.createElement('button');
+            removeButton.textContent = 'Ta bort';
+            removeButton.addEventListener('click', function () {
+                removeFromCart(product.id);
+            });
+
+            itemElement.appendChild(removeButton);
+            cartItemsContainer.appendChild(itemElement);
         });
 
-
-        const totalPrice = cart.length * 150;
+        let totalPrice = shoppingCart.reduce((total, product) => total + product.price, 0);
         totalPriceElement.textContent = `Totalt: ${totalPrice}Kr`;
+
+        let totalQuantity = shoppingCart.length;
+        totalQuantityElement.textContent = totalQuantity;
+    }
+
+    let addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            let productId = event.target.getAttribute('data-product-id');
+            addToCart(productId);
+        });
+    });
+
+    try {
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        shoppingCart = storedCart;
+        updateCartUI();
     } catch (error) {
         console.error('Ett fel inträffade:', error);
     }
