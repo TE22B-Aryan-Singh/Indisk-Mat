@@ -82,16 +82,23 @@ main {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #080000;
 }
 
 .cart-item {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #0c0000;
+    font-size: xx-large;
 }
 
 .total-price {
     font-size: xx-large;
     font-weight: bold;
     margin-left: 8rem;
+}
+
+.remove-button {
+    right: 900px;
+    position: absolute;
+    font-size: x-large; 
 }

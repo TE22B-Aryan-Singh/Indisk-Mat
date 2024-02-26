@@ -140,6 +140,7 @@ main{
     color: #fff;
     cursor: pointer;
     transition: ease-in-out 0.2s;
+    font-size: large;
 }
 
 .add-to-cart:hover{

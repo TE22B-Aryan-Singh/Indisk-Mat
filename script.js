@@ -8,7 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const products = [
         { id: 1, name: 'Indisk Dhaal', price: 150 },
         { id: 2, name: 'Tikka Masala', price: 150 },
-    
+        { id: 3, name: 'Saag Paneer', price: 150 },
+        { id: 4, name: 'Naanbröd', price: 150 },
+        { id: 5, name: 'Speciall Buffe', price: 150 },
+        { id: 6, name: 'Kolfi', price: 150 },
+        { id: 7, name: 'Butter Chicken', price: 150 },
+        { id: 8, name: 'Samosa', price: 150 },
+        { id: 9, name: 'Kheer', price: 150 },
+        { id: 10, name: 'Coca Cola', price: 150 },
+        { id: 11, name: 'Fanta', price: 150 },
+        { id: 12, name: 'Chicken Biryani', price: 150 },
     ];
 
     function addToCart(productId) {
@@ -53,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let removeButton = document.createElement('button');
             removeButton.textContent = 'Ta bort';
+            removeButton.classList.add('remove-button');
             removeButton.addEventListener('click', function () {
                 removeFromCart(product.id);
             });
