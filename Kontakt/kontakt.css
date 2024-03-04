@@ -75,7 +75,7 @@ main{
 
 .karta > iframe{
     border-radius: 25px;
-    width: 1265px;
+    width: auto;
 }
 
 section{
