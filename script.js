@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const cartItemsContainer = document.getElementById('cart-items');
     const totalPriceElement = document.getElementById('total-price');
-    const totalQuantityElement = document.querySelector('.totalQuantity');
 
     let shoppingCart = [];
 
